@@ -72,10 +72,15 @@ public class RadialBlur {
         canvas.drawBitmap(src, matrix, paint);
 
         paint.setAlpha(51);
+
+        long start = System.currentTimeMillis();
+
         for (int i = 0; i < times; i++) {
             matrix.setScale(i * factor + 1, i * factor + 1, centerX, centerY);
             canvas.drawBitmap(src, matrix, paint);
         }
+
+        System.out.println(System.currentTimeMillis() - start);
         return dst;
     }
 }

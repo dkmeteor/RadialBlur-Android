@@ -1,10 +1,9 @@
 package com.dk.image.process.demo;
 
-import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.view.Menu;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ImageView;
@@ -14,7 +13,7 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 
 import com.dk.image.process.radialblur.RadialBlur;
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
     private ImageView mImage;
     private Bitmap mSrc;
     private SeekBar mDx, mDy;
@@ -24,6 +23,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setTitle(R.string.app_name);
 
         mImage = (ImageView) findViewById(R.id.imageview);
         mSrc = BitmapFactory.decodeResource(getResources(), R.drawable.charming);
@@ -39,10 +39,13 @@ public class MainActivity extends Activity {
         mCenterBlur = (RadioButton) findViewById(R.id.center);
         mOrigin = (RadioButton) findViewById(R.id.origin);
 
-        mOrigin.setChecked(true);
+        mCenterBlur.setChecked(true);
+
         mTranslateBlur.setOnCheckedChangeListener(mOnCheckedChangeListener);
         mCenterBlur.setOnCheckedChangeListener(mOnCheckedChangeListener);
         mOrigin.setOnCheckedChangeListener(mOnCheckedChangeListener);
+
+        mImage.setImageBitmap(RadialBlur.doRadialBlur(mSrc, mSrc.getWidth()/2,mSrc.getHeight()/2, 0.02f));
     }
 
     private OnCheckedChangeListener mOnCheckedChangeListener = new OnCheckedChangeListener() {
