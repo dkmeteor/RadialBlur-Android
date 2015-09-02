@@ -5,7 +5,11 @@
 
 # How to use
 
-Copy `com.dk.image.process.blur.RadialBlur` to your projct and call static functions:
+add dependence
+
+    compile 'com.dk.image.process.radialblur:library:0.1.0@aar'
+
+Or just copy `com.dk.image.process.blur.RadialBlur` to your projct and call static functions:
 
 	MotionBlur.doMotionBlur(Bitmap src, int dx, int dy)
 	MotionBlur.doMotionBlur(Bitmap src, int centerX, int centerY, float factor) 
